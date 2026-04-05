@@ -1,45 +1,314 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Luvra</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luvra | Emotional Gifts</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#0a0a12;
+color:white;
+overflow-x:hidden;
+}
+
+/* BACKGROUND */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 20%,rgba(139,92,246,0.2),transparent 30%),
+radial-gradient(circle at 80% 70%,rgba(236,72,153,0.15),transparent 30%);
+z-index:-1;
+}
+
+/* CONTAINER */
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+/* HERO */
+.hero{
+padding:100px 0 60px;
+text-align:center;
+}
+
+.hero h1{
+font-size:clamp(2.5rem,5vw,4.5rem);
+font-weight:800;
+line-height:1.1;
+}
+
+.gradient{
+background:linear-gradient(45deg,#8b5cf6,#ec4899);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.hero p{
+color:#aaa;
+margin:20px auto;
+max-width:600px;
+font-size:1.1rem;
+}
+
+.btn{
+padding:14px 26px;
+border-radius:40px;
+border:none;
+cursor:pointer;
+font-weight:600;
+margin:10px;
+transition:.3s;
+}
+
+.btn-primary{
+background:linear-gradient(45deg,#8b5cf6,#ec4899);
+color:white;
+}
+
+.btn-secondary{
+background:rgba(255,255,255,0.08);
+color:white;
+border:1px solid rgba(255,255,255,0.15);
+}
+
+.btn:hover{transform:translateY(-3px)}
+
+/* VIDEO */
+.video{
+margin-top:40px;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+
+.video iframe{
+width:100%;
+height:450px;
+border:none;
+}
+
+/* SECTIONS */
+.section{
+padding:80px 0;
+text-align:center;
+}
+
+.section h2{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+.section p{
+color:#aaa;
+max-width:600px;
+margin:auto;
+margin-bottom:30px;
+}
+
+/* CARDS */
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+padding:25px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,0.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+background:rgba(255,255,255,0.08);
+}
+
+/* PRICING */
+.pricing{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.price{
+background:#111120;
+padding:30px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.price h3{margin-bottom:10px}
+.price h1{font-size:2.5rem;margin:10px 0}
+
+/* ORDER MODAL */
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-box{
+background:#12121f;
+padding:25px;
+border-radius:20px;
+width:90%;
+max-width:500px;
+}
+
+.modal input,
+.modal textarea,
+.modal select{
+width:100%;
+margin:8px 0;
+padding:12px;
+border-radius:10px;
+border:none;
+background:#1b1b2a;
+color:white;
+}
+
+/* WHATSAPP */
+.wa{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:14px 20px;
+border-radius:50px;
+font-weight:600;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- HERO -->
+<div class="hero container">
+<h1>This gift made her <span class="gradient">cry…</span></h1>
 
-<h1>This gift made her cry…</h1>
-<p>Not just a message. A full experience.</p>
+<p>Not just a message. A full emotional experience she'll never forget.</p>
 
-<button class="btn" onclick="openOrder()">Create Your Gift</button>
+<button class="btn btn-primary" onclick="openOrder()">Create Your Gift</button>
+<button class="btn btn-secondary">View Examples</button>
 
-<iframe width="100%" height="400"
-src="https://www.youtube.com/embed/geN2L-snSqI"></iframe>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/geN2L-snSqI"></iframe>
+</div>
+</div>
 
-<h2>Pricing</h2>
-<div id="pricing"></div>
+<!-- FEATURES -->
+<div class="section container">
+<h2>Why this hits different</h2>
+<p>This isn’t just a gift… it’s a memory.</p>
 
+<div class="cards">
+<div class="card">💌 Emotional storytelling</div>
+<div class="card">🖼️ Real memories & photos</div>
+<div class="card">🎵 Music that hits</div>
+<div class="card">✨ Clean premium design</div>
+</div>
+</div>
+
+<!-- PRICING -->
+<div class="section container">
+<h2>Choose your experience</h2>
+
+<div class="pricing">
+
+<div class="price">
+<h3>Simple Gift</h3>
+<h1>$3</h1>
+<p>Clean emotional page</p>
+</div>
+
+<div class="price">
+<h3>Emotional Experience</h3>
+<h1>$5</h1>
+<p>Stronger story + music</p>
+</div>
+
+<div class="price">
+<h3>Cinematic Story</h3>
+<h1>$10</h1>
+<p>Full premium experience</p>
+</div>
+
+</div>
+</div>
+
+<!-- CTA -->
+<div class="section container">
+<h2>Ready to make someone emotional?</h2>
+<button class="btn btn-primary" onclick="openOrder()">Create Your Gift Now</button>
 </div>
 
 <!-- ORDER -->
-<div class="modal" id="orderModal">
-<div class="card">
+<div class="modal" id="modal">
+<div class="modal-box">
 
-<input id="name" placeholder="Your Name"><br>
-<input id="partner" placeholder="Partner Name"><br>
-<textarea id="story" placeholder="Your Story"></textarea><br>
+<h2>Create Your Gift</h2>
 
-<select id="package"></select>
+<input id="name" placeholder="Your Name">
+<input id="partner" placeholder="Partner Name">
+<textarea id="story" placeholder="Your Story"></textarea>
 
-<button onclick="submitOrder()">Submit</button>
-<button onclick="closeOrder()">Close</button>
+<select id="package">
+<option>Simple</option>
+<option>Emotional</option>
+<option>VIP</option>
+</select>
+
+<button class="btn btn-primary" onclick="submitOrder()">Submit</button>
+<button class="btn btn-secondary" onclick="closeOrder()">Close</button>
 
 </div>
 </div>
 
-<script src="config.js"></script>
-<script src="app.js"></script>
+<a class="wa" href="https://wa.me/9647770998885">WhatsApp</a>
+
+<script>
+
+function openOrder(){
+document.getElementById("modal").style.display="flex";
+}
+
+function closeOrder(){
+document.getElementById("modal").style.display="none";
+}
+
+function submitOrder(){
+
+let msg = `New Order:
+Name: ${name.value}
+Partner: ${partner.value}
+Story: ${story.value}
+Package: ${package.value}`;
+
+window.open("https://wa.me/9647770998885?text="+encodeURIComponent(msg));
+
+alert("Order sent!");
+closeOrder();
+}
+
+</script>
 
 </body>
 </html>
