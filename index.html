@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Luvra</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>This gift made her cry…</h1>
+<p>Not just a message. A full experience.</p>
+
+<button class="btn" onclick="openOrder()">Create Your Gift</button>
+
+<iframe width="100%" height="400"
+src="https://www.youtube.com/embed/geN2L-snSqI"></iframe>
+
+<h2>Pricing</h2>
+<div id="pricing"></div>
+
+</div>
+
+<!-- ORDER -->
+<div class="modal" id="orderModal">
+<div class="card">
+
+<input id="name" placeholder="Your Name"><br>
+<input id="partner" placeholder="Partner Name"><br>
+<textarea id="story" placeholder="Your Story"></textarea><br>
+
+<select id="package"></select>
+
+<button onclick="submitOrder()">Submit</button>
+<button onclick="closeOrder()">Close</button>
+
+</div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
