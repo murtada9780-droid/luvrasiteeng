@@ -1,314 +1,1813 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luvra | Emotional Gifts</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Luvra | Premium Emotional Digital Gifts</title>
+  <meta name="description" content="Luvra creates premium emotional digital gifts that turn your story, memories, photos, and music into a beautiful interactive experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06060b;
+      --bg-2: #0c0814;
+      --border: rgba(255,255,255,0.12);
+      --text: #f7f2ff;
+      --muted: #c9bedf;
+      --primary: #9b6bff;
+      --pink: #ff67b8;
+      --gold: #f0ca82;
+      --success: #1bc67a;
+      --danger: #ff7b9e;
+      --shadow: 0 12px 42px rgba(0,0,0,0.28);
+      --radius-xl: 30px;
+      --max: 1220px;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(155,107,255,0.16), transparent 26%),
+        radial-gradient(circle at 90% 15%, rgba(255,103,184,0.12), transparent 22%),
+        radial-gradient(circle at 82% 80%, rgba(109,40,217,0.14), transparent 30%),
+        linear-gradient(180deg, #06060b 0%, #0c0814 50%, #08080d 100%);
+      overflow-x: hidden;
+      padding-top: 88px;
+      padding-bottom: 108px;
+    }
 
-<style>
+    a { color: inherit; text-decoration: none; }
+    img, video, iframe { display: block; max-width: 100%; }
+    button, input, textarea, select { font-family: inherit; }
 
-*{margin:0;padding:0;box-sizing:border-box}
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
 
-body{
-font-family:'Poppins',sans-serif;
-background:#0a0a12;
-color:white;
-overflow-x:hidden;
-}
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
 
-/* BACKGROUND */
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background:
-radial-gradient(circle at 20% 20%,rgba(139,92,246,0.2),transparent 30%),
-radial-gradient(circle at 80% 70%,rgba(236,72,153,0.15),transparent 30%);
-z-index:-1;
-}
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: radial-gradient(#ffffff 0.7px, transparent 0.7px);
+      background-size: 18px 18px;
+      z-index: 0;
+    }
 
-/* CONTAINER */
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
-}
+    .heart {
+      position: fixed;
+      pointer-events: none;
+      opacity: 0.12;
+      z-index: 1;
+      animation: floatUp linear infinite;
+    }
 
-/* HERO */
-.hero{
-padding:100px 0 60px;
-text-align:center;
-}
+    @keyframes floatUp {
+      from { transform: translateY(105vh) scale(0.8); opacity: 0; }
+      10% { opacity: 0.14; }
+      to { transform: translateY(-12vh) scale(1.1); opacity: 0; }
+    }
 
-.hero h1{
-font-size:clamp(2.5rem,5vw,4.5rem);
-font-weight:800;
-line-height:1.1;
-}
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 40;
+      background: rgba(6,6,11,0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform .25s ease, background .25s ease;
+    }
 
-.gradient{
-background:linear-gradient(45deg,#8b5cf6,#ec4899);
--webkit-background-clip:text;
-color:transparent;
-}
+    .nav-wrap.nav-hidden {
+      transform: translateY(-100%);
+    }
 
-.hero p{
-color:#aaa;
-margin:20px auto;
-max-width:600px;
-font-size:1.1rem;
-}
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 0;
+    }
 
-.btn{
-padding:14px 26px;
-border-radius:40px;
-border:none;
-cursor:pointer;
-font-weight:600;
-margin:10px;
-transition:.3s;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 1.14rem;
+      letter-spacing: .01em;
+    }
 
-.btn-primary{
-background:linear-gradient(45deg,#8b5cf6,#ec4899);
-color:white;
-}
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--primary), var(--pink));
+      box-shadow: 0 10px 26px rgba(155,107,255,0.34);
+      font-size: 1.2rem;
+    }
 
-.btn-secondary{
-background:rgba(255,255,255,0.08);
-color:white;
-border:1px solid rgba(255,255,255,0.15);
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: .95rem;
+    }
 
-.btn:hover{transform:translateY(-3px)}
+    .nav-links a:hover { color: #fff; }
 
-/* VIDEO */
-.video{
-margin-top:40px;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 20px 60px rgba(0,0,0,0.5);
-}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-family: inherit;
+      font-weight: 800;
+      border: 0;
+      cursor: pointer;
+      transition: transform .25s ease, background .25s ease, opacity .25s ease;
+      white-space: nowrap;
+      text-align: center;
+    }
 
-.video iframe{
-width:100%;
-height:450px;
-border:none;
-}
+    .btn:hover { transform: translateY(-2px); }
 
-/* SECTIONS */
-.section{
-padding:80px 0;
-text-align:center;
-}
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--pink));
+      box-shadow: 0 10px 30px rgba(155,107,255,0.34);
+    }
 
-.section h2{
-font-size:2rem;
-margin-bottom:10px;
-}
+    .btn-secondary {
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
 
-.section p{
-color:#aaa;
-max-width:600px;
-margin:auto;
-margin-bottom:30px;
-}
+    .btn-ghost {
+      color: #f6eeff;
+      background: transparent;
+      border: 1px dashed rgba(255,255,255,0.22);
+    }
 
-/* CARDS */
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
+    .hero {
+      padding: 76px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
 
-.card{
-background:rgba(255,255,255,0.05);
-padding:25px;
-border-radius:20px;
-border:1px solid rgba(255,255,255,0.08);
-transition:.3s;
-}
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 26px;
+      align-items: center;
+    }
 
-.card:hover{
-transform:translateY(-5px);
-background:rgba(255,255,255,0.08);
-}
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 0.94rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
 
-/* PRICING */
-.pricing{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
 
-.price{
-background:#111120;
-padding:30px;
-border-radius:25px;
-border:1px solid rgba(255,255,255,0.1);
-}
+    .hero p {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 2;
+      max-width: 720px;
+    }
 
-.price h3{margin-bottom:10px}
-.price h1{font-size:2.5rem;margin:10px 0}
+    .hero .accent {
+      background: linear-gradient(135deg, #fff, #dcc8ff 40%, #ffa9d8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-/* ORDER MODAL */
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.8);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999;
-}
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
 
-.modal-box{
-background:#12121f;
-padding:25px;
-border-radius:20px;
-width:90%;
-max-width:500px;
-}
+    .hero-notes {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: .96rem;
+    }
 
-.modal input,
-.modal textarea,
-.modal select{
-width:100%;
-margin:8px 0;
-padding:12px;
-border-radius:10px;
-border:none;
-background:#1b1b2a;
-color:white;
-}
+    .hero-notes span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
 
-/* WHATSAPP */
-.wa{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-padding:14px 20px;
-border-radius:50px;
-font-weight:600;
-}
+    .show-window {
+      border-radius: var(--radius-xl);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
 
-</style>
+    .mockup {
+      border-radius: 24px;
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(8,8,15,0.94), rgba(13,11,20,0.98));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .browser-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      color: #f0ebff;
+      font-size: .9rem;
+    }
+
+    .dots { display: flex; gap: 6px; }
+    .dots span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.28);
+    }
+
+    .screen {
+      min-height: 480px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 20%),
+        radial-gradient(circle at 84% 20%, rgba(255,103,184,0.18), transparent 22%),
+        linear-gradient(180deg, #1a1430, #0d0b14);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .screen::after {
+      content: '';
+      position: absolute;
+      inset: auto -30px -40px auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(155,107,255,0.24), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .screen-badge {
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .screen-title {
+      margin-top: 20px;
+      font-size: 2rem;
+      line-height: 1.25;
+      font-weight: 900;
+      max-width: 360px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .screen-text {
+      margin-top: 12px;
+      color: #d8cff1;
+      max-width: 360px;
+      line-height: 1.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    .floating-panel {
+      align-self: end;
+      width: 72%;
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+      position: relative;
+      z-index: 1;
+    }
+
+    .line {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      margin-bottom: 10px;
+    }
+
+    .line.short { width: 54%; }
+
+    section { padding: 28px 0 16px; }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .section-head p {
+      margin: 0 auto;
+      max-width: 780px;
+      color: var(--muted);
+      line-height: 1.95;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 22px;
+      border-radius: 24px;
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, rgba(155,107,255,0.24), rgba(255,103,184,0.24));
+      font-size: 1.35rem;
+    }
+
+    .card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.85; }
+
+    .video-layout {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .video-box, .small-info {
+      border-radius: 26px;
+      overflow: hidden;
+    }
+
+    .video-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      border: 0;
+      background: #000;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 12px;
+      padding: 22px;
+      height: 100%;
+    }
+
+    .check-item {
+      display: flex;
+      gap: 12px;
+      align-items: start;
+      line-height: 1.85;
+      color: var(--muted);
+    }
+
+    .check-item b { color: #fff; display: block; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .step { padding: 24px; border-radius: 24px; }
+
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--pink));
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .step h3 { margin: 0 0 8px; }
+    .step p { margin: 0; color: var(--muted); line-height: 1.85; }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .price-card {
+      padding: 26px;
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-card.popular {
+      outline: 1.5px solid rgba(240,202,130,0.55);
+      transform: translateY(-6px);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), #c98f34);
+      color: #1e1405;
+      font-weight: 900;
+      font-size: .84rem;
+    }
+
+    .price-card h3 { margin: 0 0 8px; font-size: 1.35rem; }
+    .price-sub { color: var(--muted); line-height: 1.85; margin-bottom: 16px; }
+    .price { font-size: 2.8rem; font-weight: 900; margin-bottom: 18px; }
+    .price small { font-size: 1rem; color: var(--muted); font-weight: 700; }
+
+    .price-list {
+      margin: 0 0 22px;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .price-list li {
+      list-style: none;
+      position: relative;
+      padding-left: 26px;
+      line-height: 1.8;
+      color: #f5efff;
+    }
+
+    .price-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #c3a0ff;
+      font-weight: 900;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .demo-card {
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .demo-media {
+      min-height: 260px;
+      display: flex;
+      align-items: end;
+      padding: 22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.5)),
+        radial-gradient(circle at 20% 20%, rgba(155,107,255,0.4), transparent 28%),
+        radial-gradient(circle at 80% 25%, rgba(255,103,184,0.3), transparent 25%),
+        linear-gradient(135deg, #171124, #0e0b15);
+    }
+
+    .demo-tag {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .demo-title { font-size: 1.58rem; font-weight: 900; }
+    .demo-body { padding: 20px; color: var(--muted); line-height: 1.95; }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .trust-card, .reviews-card, .faq-card, .contact-card, .order-card, .order-side {
+      padding: 24px;
+      border-radius: 28px;
+    }
+
+    .trust-list, .reviews-grid, .faq, .contact-links {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .trust-item {
+      display: flex;
+      gap: 12px;
+      align-items: start;
+      color: var(--muted);
+      line-height: 1.88;
+    }
+
+    .trust-item strong { display: block; color: #fff; }
+
+    .review {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .review p { margin: 0 0 10px; line-height: 1.9; color: #f5efff; }
+    .review strong { color: var(--muted); font-size: .95rem; }
+
+    .contact-layout, .order-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      transition: .25s ease;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .contact-link small { color: var(--muted); }
+
+    details {
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      padding: 16px 18px;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    details p { margin: 12px 0 0; color: var(--muted); line-height: 1.9; }
+
+    .order-layout { align-items: start; }
+
+    .order-card h3, .order-side h3 {
+      margin: 0 0 8px;
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    .order-card p, .order-side p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin: 0 0 18px;
+    }
+
+    .order-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #f3ecff;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      padding: 14px 16px;
+      outline: none;
+      transition: .25s ease;
+      resize: vertical;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #a998c7;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(155,107,255,0.7);
+      box-shadow: 0 0 0 3px rgba(155,107,255,0.16);
+    }
+
+    .package-switcher {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .package-option {
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      padding: 16px;
+      cursor: pointer;
+      transition: .25s ease;
+      text-align: left;
+    }
+
+    .package-option:hover { transform: translateY(-2px); }
+
+    .package-option.active {
+      border-color: rgba(240,202,130,0.7);
+      background: linear-gradient(180deg, rgba(240,202,130,0.12), rgba(155,107,255,0.06));
+      box-shadow: 0 0 0 3px rgba(240,202,130,0.13);
+    }
+
+    .package-option strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .package-option span {
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.7;
+      display: block;
+    }
+
+    .feature-panel {
+      margin: 18px 0 0;
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .feature-panel h4 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .feature-list div { display: flex; gap: 8px; }
+
+    .helper {
+      color: #bcaede;
+      font-size: .84rem;
+      line-height: 1.8;
+      margin-top: 6px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .status-box {
+      margin-top: 16px;
+      border-radius: 18px;
+      padding: 14px 16px;
+      font-size: .92rem;
+      line-height: 1.85;
+      display: none;
+    }
+
+    .status-box.success {
+      display: block;
+      background: rgba(27,198,122,0.1);
+      border: 1px solid rgba(27,198,122,0.28);
+      color: #d8fff0;
+    }
+
+    .status-box.error {
+      display: block;
+      background: rgba(255,123,158,0.1);
+      border: 1px solid rgba(255,123,158,0.28);
+      color: #ffe2ea;
+    }
+
+    .status-box.info {
+      display: block;
+      background: rgba(155,107,255,0.12);
+      border: 1px solid rgba(155,107,255,0.28);
+      color: #efe4ff;
+    }
+
+    .order-summary {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      color: #f7f2ff;
+    }
+
+    .summary-item small { color: var(--muted); }
+
+    .channel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .channel-option {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      cursor: pointer;
+      transition: .25s ease;
+      text-align: left;
+      color: #fff;
+    }
+
+    .channel-option:hover { transform: translateY(-2px); }
+    .channel-option.active {
+      border-color: rgba(155,107,255,0.65);
+      box-shadow: 0 0 0 3px rgba(155,107,255,0.14);
+      background: linear-gradient(180deg, rgba(155,107,255,0.12), rgba(255,255,255,0.03));
+    }
+
+    .channel-option strong {
+      font-size: .98rem;
+      font-weight: 800;
+    }
+
+    .channel-option span {
+      font-size: .84rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .cta {
+      margin: 30px 0 40px;
+      padding: 24px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .cta h3 { margin: 0 0 8px; font-size: 1.7rem; font-weight: 900; }
+    .cta p { margin: 0; color: var(--muted); line-height: 1.9; max-width: 640px; }
+
+    .wa-float {
+      position: fixed;
+      left: 18px;
+      bottom: max(18px, env(safe-area-inset-bottom));
+      z-index: 45;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #1bc67a, #0ea765);
+      color: white;
+      font-weight: 900;
+      box-shadow: 0 14px 34px rgba(13,167,101,.28);
+      transition: transform .25s ease, opacity .25s ease, bottom .25s ease;
+    }
+
+    .wa-float.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(16px);
+    }
+
+    .copy-btn { font-size: .95rem; }
+
+    #about,
+    #video,
+    #packages,
+    #demos,
+    #order,
+    #reviews,
+    #contact {
+      scroll-margin-top: 110px;
+    }
+
+    input,
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+
+    footer {
+      padding: 10px 0 36px;
+      text-align: center;
+      color: #b7abcf;
+      font-size: .95rem;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .video-layout,
+      .trust-grid,
+      .contact-layout,
+      .order-layout {
+        grid-template-columns: 1fr;
+      }
+      .grid-4 { grid-template-columns: repeat(2,1fr); }
+      .steps { grid-template-columns: 1fr; }
+      .pricing { grid-template-columns: repeat(2,1fr); }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding-top: 132px;
+        padding-bottom: 112px;
+      }
+
+      .nav {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+        min-height: auto;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 12px 18px;
+      }
+
+      .hero { padding-top: 18px; }
+      .grid-4,
+      .pricing,
+      .package-switcher,
+      .order-grid,
+      .channel-grid { grid-template-columns: 1fr; }
+      .hero-actions,
+      .hero-notes { flex-direction: column; align-items: stretch; }
+      .cta { flex-direction: column; align-items: start; }
+      .screen { min-height: 380px; }
+      .floating-panel { width: 100%; }
+      .wa-float {
+        left: 12px;
+        right: 12px;
+        bottom: max(12px, env(safe-area-inset-bottom));
+        justify-content: center;
+        display: flex;
+      }
+
+      .video-frame {
+        min-height: 220px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="noise"></div>
+  <div id="hearts"></div>
 
-<!-- HERO -->
-<div class="hero container">
-<h1>This gift made her <span class="gradient">cry…</span></h1>
+  <div class="nav-wrap">
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <span class="brand-logo">♥</span>
+        <span>Luvra</span>
+      </a>
 
-<p>Not just a message. A full emotional experience she'll never forget.</p>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#video">Preview</a>
+        <a href="#packages">Packages</a>
+        <a href="#demos">Demo</a>
+        <a href="#order">Smart Order</a>
+        <a href="#contact">Contact</a>
+      </div>
 
-<button class="btn btn-primary" onclick="openOrder()">Create Your Gift</button>
-<button class="btn btn-secondary">View Examples</button>
+      <a class="btn btn-primary" href="#order">Order Now</a>
+    </div>
+  </div>
 
-<div class="video">
-<iframe src="https://www.youtube.com/embed/geN2L-snSqI"></iframe>
-</div>
-</div>
+  <a class="wa-float" href="#order">Start Your Order</a>
 
-<!-- FEATURES -->
-<div class="section container">
-<h2>Why this hits different</h2>
-<p>This isn’t just a gift… it’s a memory.</p>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill">✨ Not just a link — a full emotional experience</div>
+          <h1>Turn your gift into a <span class="accent">premium story</span><br>instead of a normal message</h1>
+          <p>
+            Luvra creates custom digital gifts that transform your words, memories, photos, music, and shared moments into a beautiful interactive experience.
+            It is not just a page. It is a full emotional gift designed to feel personal, elegant, and unforgettable.
+          </p>
 
-<div class="cards">
-<div class="card">💌 Emotional storytelling</div>
-<div class="card">🖼️ Real memories & photos</div>
-<div class="card">🎵 Music that hits</div>
-<div class="card">✨ Clean premium design</div>
-</div>
-</div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#demos">See the Demo</a>
+            <a class="btn btn-secondary" href="#packages">See Packages</a>
+            <button class="btn btn-ghost copy-btn" onclick="copySiteLink()">Copy Website Link</button>
+          </div>
 
-<!-- PRICING -->
-<div class="section container">
-<h2>Choose your experience</h2>
+          <div class="hero-notes">
+            <span>🛡️ Safe with no login required</span>
+            <span>💬 Smart order system</span>
+            <span>💜 Perfect for love, anniversaries, and meaningful moments</span>
+          </div>
+        </div>
 
-<div class="pricing">
+        <div class="show-window glass">
+          <div class="mockup">
+            <div class="browser-top">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div>luvra gift preview</div>
+            </div>
+            <div class="screen">
+              <div>
+                <div class="screen-badge">Private Gift ♥</div>
+                <div class="screen-title">A gift that feels<br>like a real experience</div>
+                <div class="screen-text">Elegant design, structured messages, photos, music, memories, hidden details, and a full journey that feels special from the first second.</div>
+              </div>
+              <div class="floating-panel">
+                <div class="line short"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line short"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="price">
-<h3>Simple Gift</h3>
-<h1>$3</h1>
-<p>Clean emotional page</p>
-</div>
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>Why this project stands out</h2>
+          <p>This page is built to create trust, explain the idea quickly, and show exactly what the customer will receive. Clean structure, premium style, and a stronger emotional hook from the first visit.</p>
+        </div>
 
-<div class="price">
-<h3>Emotional Experience</h3>
-<h1>$5</h1>
-<p>Stronger story + music</p>
-</div>
+        <div class="grid-4">
+          <div class="card glass">
+            <div class="icon">💌</div>
+            <h3>Structured messages</h3>
+            <p>Your words are organized into clear, elegant sections instead of one long block of text, so the emotion lands better.</p>
+          </div>
+          <div class="card glass">
+            <div class="icon">🖼️</div>
+            <h3>Photos & memories</h3>
+            <p>Add personal photos and meaningful moments inside a polished design that makes every detail feel more valuable.</p>
+          </div>
+          <div class="card glass">
+            <div class="icon">🎵</div>
+            <h3>Music & mood</h3>
+            <p>Include a song or a soft atmosphere that makes the gift feel like a complete emotional experience, not just a page.</p>
+          </div>
+          <div class="card glass">
+            <div class="icon">🔒</div>
+            <h3>Premium extras</h3>
+            <p>Things like a secret question, hidden message, relationship counter, and surprise countdown depending on the selected package.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="price">
-<h3>Cinematic Story</h3>
-<h1>$10</h1>
-<p>Full premium experience</p>
-</div>
+    <section id="video">
+      <div class="container">
+        <div class="section-head">
+          <h2>Project preview</h2>
+          <p>A short preview that helps customers instantly understand how the gift looks and feels.</p>
+        </div>
 
-</div>
-</div>
+        <div class="video-layout">
+          <div class="video-box glass">
+            <iframe class="video-frame" src="https://www.youtube.com/embed/geN2L-snSqI" title="Luvra Preview" allowfullscreen></iframe>
+          </div>
 
-<!-- CTA -->
-<div class="section container">
-<h2>Ready to make someone emotional?</h2>
-<button class="btn btn-primary" onclick="openOrder()">Create Your Gift Now</button>
-</div>
+          <div class="small-info glass">
+            <div class="check-list">
+              <div class="check-item"><div>✅</div><div><b>Builds trust fast</b>The preview shows that the project is real, polished, and easy to understand.</div></div>
+              <div class="check-item"><div>✅</div><div><b>Makes selling easier</b>Instead of imagining the result, the visitor sees the outcome directly.</div></div>
+              <div class="check-item"><div>✅</div><div><b>Perfect for social media</b>The same preview style works beautifully for TikTok and Instagram promotion.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- ORDER -->
-<div class="modal" id="modal">
-<div class="modal-box">
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>How the order works</h2>
+          <p>Three simple steps so anyone can order without confusion.</p>
+        </div>
 
-<h2>Create Your Gift</h2>
+        <div class="steps">
+          <div class="step glass">
+            <div class="step-num">1</div>
+            <h3>Choose your package</h3>
+            <p>Each package includes a different level of detail and luxury, so you can pick the one that fits your idea best.</p>
+          </div>
+          <div class="step glass">
+            <div class="step-num">2</div>
+            <h3>Write the details</h3>
+            <p>Add names, the main message, memories, dates, photos, music, and any special idea you want inside the gift.</p>
+          </div>
+          <div class="step glass">
+            <div class="step-num">3</div>
+            <h3>Send it your way</h3>
+            <p>The smart system prepares everything neatly so you can continue through WhatsApp, Instagram, or TikTok.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<input id="name" placeholder="Your Name">
-<input id="partner" placeholder="Partner Name">
-<textarea id="story" placeholder="Your Story"></textarea>
+    <section id="packages">
+      <div class="container">
+        <div class="section-head">
+          <h2>Packages & pricing</h2>
+          <p>Each package gives a different level of depth, customization, and emotional impact.</p>
+        </div>
 
-<select id="package">
-<option>Simple</option>
-<option>Emotional</option>
-<option>VIP</option>
-</select>
+        <div class="pricing">
+          <article class="price-card glass">
+            <h3>Basic</h3>
+            <div class="price-sub">A simple and sweet beginning</div>
+            <div class="price">$5 <small>/ gift</small></div>
+            <ul class="price-list">
+              <li>Main message</li>
+              <li>Photos inside the gift</li>
+              <li>Music</li>
+              <li>Clean and elegant design</li>
+              <li>Private shareable link</li>
+            </ul>
+            <a class="btn btn-secondary" style="width:100%" href="#order">Choose this package</a>
+          </article>
 
-<button class="btn btn-primary" onclick="submitOrder()">Submit</button>
-<button class="btn btn-secondary" onclick="closeOrder()">Close</button>
+          <article class="price-card glass popular">
+            <div class="popular-badge">Most requested</div>
+            <h3>Pro</h3>
+            <div class="price-sub">The best value for a stronger gift</div>
+            <div class="price">$7 <small>/ gift</small></div>
+            <ul class="price-list">
+              <li>Message split into sections</li>
+              <li>Memories with dates</li>
+              <li>Photos + music</li>
+              <li>Secret question + answer</li>
+              <li>Hidden message</li>
+            </ul>
+            <a class="btn btn-primary" style="width:100%" href="#order">Best package to order</a>
+          </article>
 
-</div>
-</div>
+          <article class="price-card glass">
+            <h3>VIP</h3>
+            <div class="price-sub">For the most special gifts</div>
+            <div class="price">$10 <small>/ gift</small></div>
+            <ul class="price-list">
+              <li>Everything in Pro</li>
+              <li>Full timeline</li>
+              <li>Relationship counter</li>
+              <li>Upcoming surprise countdown</li>
+              <li>More premium and personalized experience</li>
+            </ul>
+            <a class="btn btn-secondary" style="width:100%" href="#order">For luxury orders</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<a class="wa" href="https://wa.me/9647770998885">WhatsApp</a>
+    <section id="demos">
+      <div class="container">
+        <div class="section-head">
+          <h2>VIP demo</h2>
+          <p>One premium example that shows the highest level of detail and emotion. You can add more demos later directly in the code.</p>
+        </div>
 
-<script>
+        <div class="demo-grid">
+          <article class="demo-card glass">
+            <div class="demo-media">
+              <div>
+                <div class="demo-tag">VIP emotional gift experience</div>
+                <div class="demo-title">A richer, more cinematic love story</div>
+              </div>
+            </div>
+            <div class="demo-body">
+              This VIP example shows a stronger visual journey with music, emotional sections, private details, and a more luxurious storytelling flow.<br><br>
+              <a class="btn btn-secondary" href="https://luvra-gift.vercel.app/gift/qamar-vip" target="_blank" rel="noopener noreferrer">Open VIP Demo</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-function openOrder(){
-document.getElementById("modal").style.display="flex";
-}
+    <section id="order">
+      <div class="container">
+        <div class="section-head">
+          <h2>Smart order system</h2>
+          <p>Write the full gift details once, and the system will prepare everything neatly for the platform you want to continue on.</p>
+        </div>
 
-function closeOrder(){
-document.getElementById("modal").style.display="none";
-}
+        <div class="order-layout">
+          <div class="order-card glass">
+            <h3>Start your order</h3>
+            <p>Select a package first, then the form will automatically adjust to show the right details for that package.</p>
 
-function submitOrder(){
+            <div class="package-switcher" id="packageSwitcher">
+              <button type="button" class="package-option active" data-package="basic">
+                <strong>Basic</strong>
+                <span>Main message + photos + music</span>
+              </button>
+              <button type="button" class="package-option" data-package="pro">
+                <strong>Pro</strong>
+                <span>Sections + memories + secret question + hidden message</span>
+              </button>
+              <button type="button" class="package-option" data-package="vip">
+                <strong>VIP</strong>
+                <span>Everything + relationship counter + surprise countdown</span>
+              </button>
+            </div>
 
-let msg = `New Order:
-Name: ${name.value}
-Partner: ${partner.value}
-Story: ${story.value}
-Package: ${package.value}`;
+            <form id="orderForm">
+              <div class="order-grid">
+                <div class="field">
+                  <label for="senderName">Sender name</label>
+                  <input id="senderName" name="senderName" type="text" placeholder="Example: Murtada" required>
+                </div>
 
-window.open("https://wa.me/9647770998885?text="+encodeURIComponent(msg));
+                <div class="field">
+                  <label for="receiverName">Receiver name</label>
+                  <input id="receiverName" name="receiverName" type="text" placeholder="Example: Mariam" required>
+                </div>
 
-alert("Order sent!");
-closeOrder();
-}
+                <div class="field full">
+                  <label for="packageName">Selected package</label>
+                  <input id="packageName" name="packageName" type="text" value="Basic" readonly>
+                </div>
 
-</script>
+                <div class="field full">
+                  <label for="mainMessage">Main message</label>
+                  <textarea id="mainMessage" name="mainMessage" rows="4" placeholder="Write the main message here" required></textarea>
+                </div>
 
+                <div class="field full basic-only">
+                  <label for="basicImages">Photo links or photo notes</label>
+                  <textarea id="basicImages" name="basicImages" rows="3" placeholder="Paste photo links or describe how many photos you want to include"></textarea>
+                  <div class="helper">This can be used in every package, but it is most important for Basic.</div>
+                </div>
+
+                <div class="field full">
+                  <label for="musicLink">Song link or song name</label>
+                  <input id="musicLink" name="musicLink" type="text" placeholder="YouTube link or song title">
+                </div>
+
+                <div class="field full">
+                  <label for="contactName">Your contact on the selected platform</label>
+                  <input id="contactName" name="contactName" type="text" placeholder="WhatsApp number, Instagram username, or TikTok username">
+                </div>
+
+                <div class="field full pro-vip-only hidden">
+                  <label for="sectionMessages">Sectioned messages</label>
+                  <textarea id="sectionMessages" name="sectionMessages" rows="5" placeholder="Example:
+Section 1: How we met...
+Section 2: Why I love you...
+Section 3: The final message..."></textarea>
+                </div>
+
+                <div class="field full pro-vip-only hidden">
+                  <label for="memories">Memories with dates</label>
+                  <textarea id="memories" name="memories" rows="5" placeholder="Example:
+01/05/2024 - Our first meeting
+14/08/2024 - Our favorite day
+31/12/2024 - The memory I never forgot"></textarea>
+                </div>
+
+                <div class="field pro-vip-only hidden">
+                  <label for="secretQuestion">Secret question</label>
+                  <input id="secretQuestion" name="secretQuestion" type="text" placeholder="Example: Where did we first meet?">
+                </div>
+
+                <div class="field pro-vip-only hidden">
+                  <label for="secretAnswer">Secret answer</label>
+                  <input id="secretAnswer" name="secretAnswer" type="text" placeholder="Example: University">
+                </div>
+
+                <div class="field full pro-vip-only hidden">
+                  <label for="hiddenMessage">Hidden message</label>
+                  <textarea id="hiddenMessage" name="hiddenMessage" rows="4" placeholder="Write the hidden message here"></textarea>
+                </div>
+
+                <div class="field full vip-only hidden">
+                  <label for="relationshipDate">Relationship start date</label>
+                  <input id="relationshipDate" name="relationshipDate" type="date">
+                  <div class="helper">Used for the “we have been together for...” counter.</div>
+                </div>
+
+                <div class="field vip-only hidden">
+                  <label for="surpriseDate">Surprise date & time</label>
+                  <input id="surpriseDate" name="surpriseDate" type="datetime-local">
+                </div>
+
+                <div class="field vip-only hidden">
+                  <label for="surpriseTitle">Surprise title</label>
+                  <input id="surpriseTitle" name="surpriseTitle" type="text" placeholder="Example: Our date in two days">
+                </div>
+
+                <div class="field full">
+                  <label for="extraNotes">Extra notes</label>
+                  <textarea id="extraNotes" name="extraNotes" rows="4" placeholder="Anything special you want to add"></textarea>
+                </div>
+              </div>
+
+              <div class="feature-panel" id="featurePanel">
+                <h4>Current package contents</h4>
+                <div class="feature-list" id="featureList"></div>
+              </div>
+
+              <div class="feature-panel">
+                <h4>Choose where you want to continue</h4>
+                <div class="channel-grid" id="channelGrid">
+                  <button type="button" class="channel-option active" data-channel="whatsapp">
+                    <strong>WhatsApp</strong>
+                    <span>Best for instant sending with the full message already filled in.</span>
+                  </button>
+                  <button type="button" class="channel-option" data-channel="instagram">
+                    <strong>Instagram</strong>
+                    <span>Your order message will be copied, then your Instagram profile will open.</span>
+                  </button>
+                  <button type="button" class="channel-option" data-channel="tiktok">
+                    <strong>TikTok</strong>
+                    <span>Your order message will be copied, then your TikTok profile will open.</span>
+                  </button>
+                </div>
+              </div>
+
+              <div id="statusBox" class="status-box"></div>
+
+              <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+                <button type="submit" class="btn btn-primary" id="submitOrderBtn">Continue with WhatsApp</button>
+                <button type="button" class="btn btn-secondary" id="clearFormBtn">Clear Form</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="order-side glass">
+            <h3>Package summary</h3>
+            <p>This summary helps the customer understand what each package includes before sending the request.</p>
+
+            <div class="order-summary">
+              <div class="summary-item">
+                <div>
+                  <strong>Basic</strong>
+                  <small>Main message + photos + music</small>
+                </div>
+                <div>$5</div>
+              </div>
+
+              <div class="summary-item">
+                <div>
+                  <strong>Pro</strong>
+                  <small>Sections + memories + secret question + hidden message</small>
+                </div>
+                <div>$7</div>
+              </div>
+
+              <div class="summary-item">
+                <div>
+                  <strong>VIP</strong>
+                  <small>Everything + relationship counter + surprise countdown</small>
+                </div>
+                <div>$10</div>
+              </div>
+            </div>
+
+            <div class="feature-panel" style="margin-top:18px;">
+              <h4>Important notes</h4>
+              <div class="feature-list">
+                <div>• WhatsApp is the fastest option because the full order opens instantly as a ready message.</div>
+                <div>• For Instagram and TikTok, the order text will be copied automatically before opening the profile.</div>
+                <div>• Write your details clearly so the gift can be built faster and exactly the way you want it.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="container trust-grid">
+        <div class="trust-card glass">
+          <div class="section-head" style="text-align:left; margin-bottom:0;">
+            <h2>Trust & safety</h2>
+            <p>This section matters because some people feel unsure about links. A clear explanation increases confidence and helps more visitors order.</p>
+          </div>
+
+          <div class="trust-list">
+            <div class="trust-item"><div>🛡️</div><div><strong>No login required</strong>The gift link opens directly in the browser without accounts or passwords.</div></div>
+            <div class="trust-item"><div>🔐</div><div><strong>No sensitive data requested</strong>No banking details, app installs, or scary permissions that make the visitor uncomfortable.</div></div>
+            <div class="trust-item"><div>🌐</div><div><strong>Clear official page</strong>The packages, demo, and direct contact options make the project look professional and trustworthy.</div></div>
+            <div class="trust-item"><div>⚡</div><div><strong>Fast, simple experience</strong>Everything is easy to understand, which helps the customer decide faster.</div></div>
+          </div>
+        </div>
+
+        <div class="reviews-card glass">
+          <div class="section-head" style="text-align:left; margin-bottom:0;">
+            <h2>Customer reactions</h2>
+            <p>Real reactions that show the emotional impact of the digital gift idea.</p>
+          </div>
+          <div class="reviews-grid">
+            <div class="review">
+              <p>"I honestly did not expect it to feel that emotional. She opened it, stayed quiet for a minute, then told me it was one of the most thoughtful gifts she had ever received."</p>
+              <strong>— Customer reaction 1</strong>
+            </div>
+            <div class="review">
+              <p>"The best part was how complete it felt. It was not just a note. The music, photos, and sections made it feel like our story had its own place."</p>
+              <strong>— Customer reaction 2</strong>
+            </div>
+            <div class="review">
+              <p>"I tried it because the idea looked different, but the reaction was stronger than I thought. It actually feels personal and memorable."</p>
+              <strong>— Customer reaction 3</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-layout">
+        <div class="contact-card glass">
+          <div class="section-head" style="text-align:left; margin-bottom:0;">
+            <h2>Contact</h2>
+            <p>Reach out directly to order or ask anything before you decide.</p>
+          </div>
+
+          <div class="contact-links">
+            <a class="contact-link" href="https://wa.me/9647770998885" target="_blank" rel="noopener noreferrer">
+              <span>WhatsApp</span>
+              <small>+964 777 099 8885</small>
+            </a>
+            <a class="contact-link" href="https://instagram.com/luvra.iq" target="_blank" rel="noopener noreferrer">
+              <span>Instagram</span>
+              <small>@luvra.iq</small>
+            </a>
+            <a class="contact-link" href="https://tiktok.com/@luvra.iq" target="_blank" rel="noopener noreferrer">
+              <span>TikTok</span>
+              <small>@luvra.iq</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="faq-card glass">
+          <div class="section-head" style="text-align:left; margin-bottom:0;">
+            <h2>Frequently asked questions</h2>
+            <p>These help customers feel comfortable without needing to message for every small detail.</p>
+          </div>
+
+          <div class="faq">
+            <details>
+              <summary>Is the link safe?</summary>
+              <p>Yes. The gift link is for viewing only and does not require login, app downloads, or sharing sensitive information.</p>
+            </details>
+            <details>
+              <summary>How long does it take?</summary>
+              <p>Usually within a few hours after receiving the full order, and at most within 24 hours depending on the package and details.</p>
+            </details>
+            <details>
+              <summary>Can I request something custom?</summary>
+              <p>Yes. You can ask for different colors, a custom idea, or another occasion style depending on the agreement.</p>
+            </details>
+            <details>
+              <summary>How do I order and pay?</summary>
+              <p>You can continue through WhatsApp, Instagram, or TikTok after using the smart form. Payment is arranged directly afterward.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta glass">
+          <div>
+            <h3>Ready to create your gift?</h3>
+            <p>If you like the idea and want something emotional, polished, and different, go to the smart order section and send your details in the platform you prefer.</p>
+          </div>
+          <a class="btn btn-primary" href="#order">Start Your Order</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Luvra — Premium emotional digital gifts.</div>
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = '9647770998885';
+    const INSTAGRAM_URL = 'https://instagram.com/luvra.iq';
+    const TIKTOK_URL = 'https://tiktok.com/@luvra.iq';
+
+    const heartContainer = document.getElementById('hearts');
+    const heartSymbols = ['♥', '♡', '❤'];
+    for (let i = 0; i < 20; i++) {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.animationDuration = (10 + Math.random() * 12) + 's';
+      h.style.animationDelay = (Math.random() * 12) + 's';
+      h.style.fontSize = (12 + Math.random() * 18) + 'px';
+      heartContainer.appendChild(h);
+    }
+
+    function copySiteLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('Website link copied.');
+      }).catch(() => {
+        alert('Could not copy the link automatically. Please copy it manually.');
+      });
+    }
+
+    const packageConfig = {
+      basic: {
+        name: 'Basic',
+        features: [
+          'Main message',
+          'Photos',
+          'Music',
+          'Clean and elegant design'
+        ]
+      },
+      pro: {
+        name: 'Pro',
+        features: [
+          'Message split into sections',
+          'Memories with dates',
+          'Photos + music',
+          'Secret question + answer',
+          'Hidden message'
+        ]
+      },
+      vip: {
+        name: 'VIP',
+        features: [
+          'Everything in Pro',
+          'Full timeline',
+          'Relationship counter',
+          'Upcoming surprise countdown',
+          'More premium and personalized experience'
+        ]
+      }
+    };
+
+    const channelConfig = {
+      whatsapp: {
+        name: 'WhatsApp',
+        buttonLabel: 'Continue with WhatsApp'
+      },
+      instagram: {
+        name: 'Instagram',
+        buttonLabel: 'Copy & Continue to Instagram'
+      },
+      tiktok: {
+        name: 'TikTok',
+        buttonLabel: 'Copy & Continue to TikTok'
+      }
+    };
+
+    const packageButtons = document.querySelectorAll('.package-option');
+    const channelButtons = document.querySelectorAll('.channel-option');
+    const packageNameInput = document.getElementById('packageName');
+    const featureList = document.getElementById('featureList');
+    const statusBox = document.getElementById('statusBox');
+    const form = document.getElementById('orderForm');
+    const clearFormBtn = document.getElementById('clearFormBtn');
+    const navWrap = document.querySelector('.nav-wrap');
+    const waFloat = document.querySelector('.wa-float');
+    const submitOrderBtn = document.getElementById('submitOrderBtn');
+
+    let selectedChannel = 'whatsapp';
+
+    function setPackage(selected) {
+      packageButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.package === selected));
+      packageNameInput.value = packageConfig[selected].name;
+      featureList.innerHTML = packageConfig[selected].features.map(item => `<div>• ${item}</div>`).join('');
+      document.querySelectorAll('.pro-vip-only').forEach(el => el.classList.toggle('hidden', selected === 'basic'));
+      document.querySelectorAll('.vip-only').forEach(el => el.classList.toggle('hidden', selected !== 'vip'));
+    }
+
+    function setChannel(channel) {
+      selectedChannel = channel;
+      channelButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.channel === channel));
+      submitOrderBtn.textContent = channelConfig[channel].buttonLabel;
+    }
+
+    packageButtons.forEach(btn => btn.addEventListener('click', () => setPackage(btn.dataset.package)));
+    channelButtons.forEach(btn => btn.addEventListener('click', () => setChannel(btn.dataset.channel)));
+
+    setPackage('basic');
+    setChannel('whatsapp');
+
+    function textValue(id) {
+      const el = document.getElementById(id);
+      return el ? el.value.trim() : '';
+    }
+
+    function createMessage() {
+      const packageName = textValue('packageName');
+      const senderName = textValue('senderName');
+      const receiverName = textValue('receiverName');
+      const mainMessage = textValue('mainMessage');
+      const basicImages = textValue('basicImages');
+      const musicLink = textValue('musicLink');
+      const contactName = textValue('contactName');
+      const sectionMessages = textValue('sectionMessages');
+      const memories = textValue('memories');
+      const secretQuestion = textValue('secretQuestion');
+      const secretAnswer = textValue('secretAnswer');
+      const hiddenMessage = textValue('hiddenMessage');
+      const relationshipDate = textValue('relationshipDate');
+      const surpriseDate = textValue('surpriseDate');
+      const surpriseTitle = textValue('surpriseTitle');
+      const extraNotes = textValue('extraNotes');
+
+      const lines = [];
+      lines.push('New order from the Luvra website');
+      lines.push('');
+      lines.push(`Package: ${packageName}`);
+      lines.push(`Sender name: ${senderName}`);
+      lines.push(`Receiver name: ${receiverName}`);
+      lines.push(`Customer contact on selected platform: ${contactName || '-'}`);
+      lines.push('');
+      lines.push('Main message:');
+      lines.push(mainMessage || '-');
+
+      if (basicImages) {
+        lines.push('');
+        lines.push('Photo links / photo notes:');
+        lines.push(basicImages);
+      }
+
+      if (musicLink) {
+        lines.push('');
+        lines.push(`Music: ${musicLink}`);
+      }
+
+      if (packageName !== 'Basic') {
+        lines.push('');
+        lines.push('Sectioned messages:');
+        lines.push(sectionMessages || '-');
+
+        lines.push('');
+        lines.push('Memories with dates:');
+        lines.push(memories || '-');
+
+        lines.push('');
+        lines.push(`Secret question: ${secretQuestion || '-'}`);
+        lines.push(`Secret answer: ${secretAnswer || '-'}`);
+
+        lines.push('');
+        lines.push('Hidden message:');
+        lines.push(hiddenMessage || '-');
+      }
+
+      if (packageName === 'VIP') {
+        lines.push('');
+        lines.push(`Relationship start date: ${relationshipDate || '-'}`);
+        lines.push(`Surprise date and time: ${surpriseDate || '-'}`);
+        lines.push(`Surprise title: ${surpriseTitle || '-'}`);
+      }
+
+      if (extraNotes) {
+        lines.push('');
+        lines.push('Extra notes:');
+        lines.push(extraNotes);
+      }
+
+      lines.push('');
+      lines.push(`Preferred platform: ${channelConfig[selectedChannel].name}`);
+
+      return lines.join('\n');
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      statusBox.className = 'status-box';
+      statusBox.textContent = '';
+
+      const senderName = textValue('senderName');
+      const receiverName = textValue('receiverName');
+      const mainMessage = textValue('mainMessage');
+
+      if (!senderName || !receiverName || !mainMessage) {
+        statusBox.className = 'status-box error';
+        statusBox.textContent = 'Please fill in the sender name, receiver name, and main message first.';
+        return;
+      }
+
+      const message = createMessage();
+
+      if (selectedChannel === 'whatsapp') {
+        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        statusBox.className = 'status-box success';
+        statusBox.textContent = 'Your order is ready. WhatsApp will open now with the full message already prepared.';
+        window.open(whatsappUrl, '_blank');
+        return;
+      }
+
+      const copied = await copyText(message);
+
+      if (selectedChannel === 'instagram') {
+        statusBox.className = copied ? 'status-box info' : 'status-box error';
+        statusBox.textContent = copied
+          ? 'Your order text was copied. Instagram will open now — just paste the message and send it.'
+          : 'Instagram will open now. If the message was not copied automatically, come back and copy it manually from the form.';
+        window.open(INSTAGRAM_URL, '_blank');
+        return;
+      }
+
+      if (selectedChannel === 'tiktok') {
+        statusBox.className = copied ? 'status-box info' : 'status-box error';
+        statusBox.textContent = copied
+          ? 'Your order text was copied. TikTok will open now — just paste the message and send it.'
+          : 'TikTok will open now. If the message was not copied automatically, come back and copy it manually from the form.';
+        window.open(TIKTOK_URL, '_blank');
+      }
+    });
+
+    clearFormBtn.addEventListener('click', function () {
+      form.reset();
+      setPackage('basic');
+      setChannel('whatsapp');
+      statusBox.className = 'status-box';
+      statusBox.textContent = '';
+    });
+
+    let lastScrollY = window.scrollY;
+    let activeFocus = false;
+
+    function updateFloatingUI() {
+      if (activeFocus) {
+        navWrap.classList.add('nav-hidden');
+        waFloat.classList.add('is-hidden');
+        return;
+      }
+      navWrap.classList.remove('nav-hidden');
+      waFloat.classList.remove('is-hidden');
+    }
+
+    document.querySelectorAll('input, textarea, select').forEach(el => {
+      el.addEventListener('focus', () => {
+        activeFocus = true;
+        updateFloatingUI();
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 250);
+      });
+      el.addEventListener('blur', () => {
+        setTimeout(() => {
+          const current = document.activeElement;
+          activeFocus = current && ['INPUT', 'TEXTAREA', 'SELECT'].includes(current.tagName);
+          updateFloatingUI();
+        }, 120);
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (activeFocus) return;
+      const currentY = window.scrollY;
+      if (window.innerWidth <= 760) {
+        if (currentY > lastScrollY && currentY > 120) {
+          navWrap.classList.add('nav-hidden');
+        } else {
+          navWrap.classList.remove('nav-hidden');
+        }
+      }
+      lastScrollY = currentY;
+    }, { passive: true });
+
+    updateFloatingUI();
+  </script>
 </body>
 </html>
