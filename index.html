@@ -864,6 +864,34 @@
       color: var(--muted);
     }
 
+    .preview-thumb {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      aspect-ratio: 1 / 1;
+    }
+
+    .preview-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .preview-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      margin-top: 8px;
+      margin-right: 8px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
     .cta {
       margin: 30px 0 40px;
       padding: 24px;
@@ -1269,6 +1297,14 @@
                 </div>
 
                 <div class="field full">
+                  <label for="giftImages">Upload gift photos</label>
+                  <input id="giftImages" name="giftImages" type="file" accept="image/*" multiple>
+                  <div class="helper">You can choose multiple images. They will be previewed here before you continue.</div>
+                  <div id="imageMeta" class="helper"></div>
+                  <div id="imagePreview" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:10px;margin-top:12px;"></div>
+                </div>
+
+                <div class="field full">
                   <label for="musicLink">Song link or song name</label>
                   <input id="musicLink" name="musicLink" type="text" placeholder="YouTube link or song title">
                 </div>
@@ -1398,7 +1434,7 @@ Section 3: The final message..."></textarea>
               <div class="feature-list">
                 <div>• WhatsApp is the fastest option because the full order opens instantly as a ready message.</div>
                 <div>• For Instagram and TikTok, the order text will be copied automatically before opening the profile.</div>
-                <div>• Write your details clearly so the gift can be built faster and exactly the way you want it.</div>
+                <div>• Uploaded photo previews are shown here, and image file names are included inside the prepared order message.</div>
               </div>
             </div>
           </div>
@@ -1597,8 +1633,12 @@ Section 3: The final message..."></textarea>
     const navWrap = document.querySelector('.nav-wrap');
     const waFloat = document.querySelector('.wa-float');
     const submitOrderBtn = document.getElementById('submitOrderBtn');
+    const giftImagesInput = document.getElementById('giftImages');
+    const imagePreview = document.getElementById('imagePreview');
+    const imageMeta = document.getElementById('imageMeta');
 
     let selectedChannel = 'whatsapp';
+    let selectedImageFiles = [];
 
     function setPackage(selected) {
       packageButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.package === selected));
@@ -1619,6 +1659,40 @@ Section 3: The final message..."></textarea>
 
     setPackage('basic');
     setChannel('whatsapp');
+
+    giftImagesInput.addEventListener('change', function () {
+      selectedImageFiles = Array.from(this.files || []);
+      renderImagePreview();
+    });
+
+    function renderImagePreview() {
+      imagePreview.innerHTML = '';
+
+      if (!selectedImageFiles.length) {
+        imageMeta.textContent = '';
+        return;
+      }
+
+      const totalSizeMB = (
+        selectedImageFiles.reduce((sum, file) => sum + file.size, 0) / (1024 * 1024)
+      ).toFixed(2);
+
+      imageMeta.innerHTML = `
+        <span class="preview-chip">${selectedImageFiles.length} image(s) selected</span>
+        <span class="preview-chip">Total size: ${totalSizeMB} MB</span>
+      `;
+
+      selectedImageFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const box = document.createElement('div');
+          box.className = 'preview-thumb';
+          box.innerHTML = `<img src="${e.target.result}" alt="${file.name}">`;
+          imagePreview.appendChild(box);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
 
     function textValue(id) {
       const el = document.getElementById(id);
@@ -1642,6 +1716,7 @@ Section 3: The final message..."></textarea>
       const surpriseDate = textValue('surpriseDate');
       const surpriseTitle = textValue('surpriseTitle');
       const extraNotes = textValue('extraNotes');
+      const imageNames = selectedImageFiles.map(file => file.name);
 
       const lines = [];
       lines.push('New order from the Luvra website');
@@ -1658,6 +1733,14 @@ Section 3: The final message..."></textarea>
         lines.push('');
         lines.push('Photo links / photo notes:');
         lines.push(basicImages);
+      }
+
+      if (imageNames.length) {
+        lines.push('');
+        lines.push(`Selected images (${imageNames.length}):`);
+        imageNames.forEach((name, index) => {
+          lines.push(`${index + 1}. ${name}`);
+        });
       }
 
       if (musicLink) {
@@ -1762,6 +1845,9 @@ Section 3: The final message..."></textarea>
       setChannel('whatsapp');
       statusBox.className = 'status-box';
       statusBox.textContent = '';
+      selectedImageFiles = [];
+      imagePreview.innerHTML = '';
+      imageMeta.textContent = '';
     });
 
     let lastScrollY = window.scrollY;
